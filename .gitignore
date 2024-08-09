@@ -1,0 +1,68 @@
+# Swap files and temporary files
+*.swp
+*.*~
+*~
+,*
+.*.swp
+.*.swo
+.\#*
+\#*\#
+
+# Project lock and metadata files
+project.lock.json
+.DS_Store
+.mypy_cache
+__pycache__
+nupkg/
+
+# Visual Studio Code and Rider IDE specific files
+/.vscode
+/.vs
+main/.vs
+/.idea
+.helix/
+/nixpkgs.iml
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+publish/
+output/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Nuke log
+.nuke/temp/
+
+# NixOS-specific files
+.nixos-test-history
+outputs/
+result-*
+result
+repl-result-*
+tags
+/source/
+.version-suffix
+.direnv
+.envrc
+
+# Temporary directories
+/pkgs/development/libraries/qt-5/*/tmp/
+/pkgs/desktops/kde-5/*/tmp/
+/pkgs/development/mobile/androidenv/xml/*
