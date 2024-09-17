@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
-
+ 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -14,5 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExampleClassLib\ExampleClassLib.csproj" />
+    <PackageReference Include="ExampleClassLib" Version="*" Condition=" '$(ContinuousIntegrationBuild)'=='true' "/>
   </ItemGroup>
+
 </Project>

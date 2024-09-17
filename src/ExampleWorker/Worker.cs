@@ -14,6 +14,7 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        // NOTE: Example of using a class library
         var foundation = new Foundation(10, "Oak");
         var json = JsonConvert.SerializeObject(foundation);
 
