@@ -1,11 +1,14 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 let
   buildDotnetModule = pkgs.buildDotnetModule;
   dotnetCorePackages = pkgs.dotnetCorePackages.dotnet_8; # Or the appropriate version
   ffmpeg = pkgs.ffmpeg;
   referencedProject = import ./src/ExampleClassLibrary { };
-in buildDotnetModule rec {
+in
+buildDotnetModule rec {
   # See:
   # https://nixos.org/guides/nix-pills/19-fundamentals-of-stdenv
   # https://nixos.org/manual/nixpkgs/stable/#chap-stdenv
@@ -20,13 +23,19 @@ in buildDotnetModule rec {
   dotnet-sdk = dotnetCorePackages.sdk;
   dotnet-runtime = dotnetCorePackages.runtime;
   selfContainedBuild = true;
-    
-  # "executables" is optional. Remove to use default, specify a list of executables 
+
+  # "executables" is optional. Remove to use default, specify a list of executables
   # or leave empty to not install any executables.
   # executables = [ "ExampleWorker" ];
-  executables = ["ExampleWorker"]; # Don't install any executables.
+  executables = [ "ExampleWorker" ]; # Don't install any executables.
 
   packNupkg = true; # This packs the project as "foo-0.1.nupkg" at `$out/share`.
 
   runtimeDeps = [ ffmpeg ]; # This will wrap ffmpeg's library path into `LD_LIBRARY_PATH`.
+
+  installPhase = ''
+    mkdir -p $out/bin
+    # Copy the built binary
+    cp src/ExampleWorker/bin/Release/net8.0/linux-x64/publish/ExampleWorker $out/bin/
+  '';
 }
